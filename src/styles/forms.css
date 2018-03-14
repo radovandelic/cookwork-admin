@@ -1,0 +1,180 @@
+.form-container,
+.dashoard-container,
+.images-container {
+    max-width: 900px;
+    width: 100%;
+    margin: 50px auto;
+    background: #F9F9F9;
+    padding: 20px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.images-container {
+    margin: 20px auto;
+    padding: 10px;
+}
+
+.images-container>div {
+    display: inline-flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.images-container>div>div {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin: 10px;
+}
+
+input {
+    width: 100%;
+    height: 30px;
+}
+
+.checkbox-grid,
+.radio-grid {
+    padding-left: 0;
+}
+
+.checkbox-grid li,
+.radio-grid li {
+    display: flex;
+    float: left;
+}
+
+.checkbox-grid li {
+    width: 50%;
+}
+
+.radio-grid li {
+    width: 100%;
+    padding-left: 0;
+    margin: 2px;
+}
+
+.react-form-control-radio {
+    display: block;
+    margin: 0;
+}
+
+.d-inline-block {
+    display: flex;
+    float: left;
+    flex-direction: row-reverse;
+    font-size: 75%;
+    font-weight: 500;
+}
+
+.react-form-control-indicator.react-form-input.react-form-radio,
+.react-form-control-indicator.react-form-input.react-form-checkbox {
+    height: 0px;
+}
+
+.inline {
+    display: inline-flex;
+    width: 100%;
+}
+
+.react-form-input {
+    width: 100%;
+    height: 35px;
+}
+
+.input-div {
+    width: 100%;
+    padding: 10px;
+}
+
+.input-div-checkbox,
+.input-div-hours {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.btn-orange,
+.btn-orange:focus {
+    background-color: #ed7b22;
+    border-color: #ed7b22;
+    font-weight: bold;
+    color: #fff;
+}
+
+.btn-orange:hover {
+    background-color: #fff;
+    color: #ed7b22;
+}
+
+#submit {
+    width: 100%;
+    margin: auto;
+}
+
+.react-form-message {
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.react-form-message-error {
+    color: #c32128;
+}
+
+.react-form-message-warning {
+    color: #c32128;
+}
+
+.react-form-message-success {
+    color: #ed7b22;
+}
+
+.react-form-control>input[type="checkbox"],
+.react-form-control>input[type="radio"] {
+    margin: 0 6px 0;
+}
+
+.uploaded-message {
+    color: #788d25;
+    font-weight: 600;
+}
+
+.upload-thumb {
+    max-height: 40vh;
+    max-width: 95%;
+    margin: 5px;
+}
+
+.btn.btn-orange.inline {
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 768px) {
+    .d-inline-block {
+        font-size: 55%;
+    }
+    .cancellation-item {
+        font-size: 45%;
+    }
+    label.react-form-control.react-form-control-checkbox.d-inline-block,
+    label.react-form-control.react-form-control-radio.d-inline-block {
+        padding: 2px;
+        margin-bottom: 2px;
+    }
+    .react-form-control>input[type="checkbox"],
+    .react-form-control>input[type="radio"] {
+        margin: -2px 5px 0;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .d-inline-block {
+        font-size: 45%;
+    }
+    .cancellation-item {
+        font-size: 40%;
+    }
+}

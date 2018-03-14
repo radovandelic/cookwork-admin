@@ -1,0 +1,32 @@
+.dashoard-container {
+    max-width: 700px;
+    position: relative;
+}
+
+.dashoard-container>div {
+    height: 60px;
+    margin-bottom: 20px;
+}
+
+.dashboard-btn {
+    margin: 10px auto;
+    width: 70%;
+}
+
+#logout,
+#logout:focus {
+    width: 40%;
+    font-weight: bold;
+}
+
+#delete,
+#delete:focus {
+    width: 100%;
+    font-weight: bold;
+}
+
+#logout:hover,
+#delete:hover {
+    background-color: #fff;
+    color: red;
+}

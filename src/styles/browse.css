@@ -1,0 +1,70 @@
+.thumb-listing-container {
+    margin: 5px auto;
+    padding: 10px 20px;
+    max-width: 600px;
+    width: 100%;
+    background: #F9F9F9;
+    box-shadow: 5px 0 5px 5px rgba(0, 0, 0, 0.40), 0 5px 5px 0 rgba(0, 0, 0, 0.40);
+}
+
+.inline-flex {
+    display: inline-flex;
+    justify-content: space-around;
+    border: 1px solid grey;
+    width: 100%;
+    padding: 10px;
+}
+
+.img-thumbnail {
+    height: 100px;
+    margin: auto;
+}
+
+.listing-info {
+    margin: auto 5px;
+}
+
+.listing-info .price-m {
+    display: none;
+}
+
+.listing-info h3,
+.listing-info h3:hover,
+.listing-info h4,
+.listing-info h4:hover,
+.listing-info h6,
+.listing-info h6:hover {
+    color: black;
+    text-align: center;
+}
+
+.btn-verify {
+    margin-right: 50px;
+}
+
+@media screen and (max-width: 600px) {
+    .home-container {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+    .thumb-listing-container {
+        width: 100%;
+        padding: 5px;
+    }
+    .listing-info h3,
+    .listing-info h4,
+    .listing-info h6 {
+        font-size: 70%;
+    }
+    .listing-info.price,
+    .listing-info .address {
+        display: none;
+    }
+    .listing-info .price-m {
+        display: block;
+    }
+    .thumb-listing-container:first-of-type {
+        margin-top: 30px;
+    }
+}
