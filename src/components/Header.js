@@ -24,9 +24,9 @@ class Header extends Component {
                                 <span className="icon-bar"></span>
                                 <span className="icon-bar"></span>
                             </button>
-                            <Link to="/">
+                            <a href="/">
                                 <img className="logo" src={logo} alt="logo" />
-                            </Link>
+                            </a>
                         </div>
 
                         <div className="collapse navbar-collapse">
