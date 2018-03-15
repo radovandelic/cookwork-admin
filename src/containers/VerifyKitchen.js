@@ -157,7 +157,7 @@ class StyledForm extends Component {
 
     formatDefaultValues = (kitchen) => {
         if (!kitchen.id) {
-            return this.setState({ redirect: '/' })
+            return this.setState({ redirect: '/admin' })
         }
         if (kitchen.events) {
             kitchen.events = "true";
@@ -477,8 +477,8 @@ class StyledForm extends Component {
         if (e.target.value === "delete") {
             this.delete();
         }
-        let redirect = this.state.popup.title === "Success" ? "/verify/kitchens" : false;
-        redirect = this.state.popup.title === "Deleted" ? "/verify/kitchens" : redirect;
+        let redirect = this.state.popup.title === "Success" ? "/admin/verify/kitchens" : false;
+        redirect = this.state.popup.title === "Deleted" ? "/admin/verify/kitchens" : redirect;
         this.setState({ overlay: 'overlay off', redirect: redirect })
     }
 }

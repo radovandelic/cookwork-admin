@@ -43,7 +43,7 @@ class Header extends Component {
                                 :
                                 <ul className="nav navbar-nav navbar-right">
                                     <li>
-                                        <Link to="/" onClick={toggleMenu}>
+                                        <Link to="/admin" onClick={toggleMenu}>
                                             <button className="btn navbar-btn nav-link nav-link-grey">
                                                 Admin Dashboard
                                         </button>

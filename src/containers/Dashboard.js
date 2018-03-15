@@ -18,7 +18,7 @@ let Dashboard = (props) => {
             <div>
                 <img src={user.picture} alt={user.name} />
             </div> <br />
-            <Link to="/verify/kitchens">
+            <Link to="/admin/verify/kitchens">
                 <button className="mb-4 btn btn-orange dashboard-btn">Verify & edit kitchen listings</button>
             </Link>
             <button id="logout" type="submit" onClick={logout} className="mb-4 btn btn-danger dashboard-btn">Logout</button>

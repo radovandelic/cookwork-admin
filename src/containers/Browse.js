@@ -44,19 +44,19 @@ export default class extends Component {
                 <div className="thumb-listing-container">
                     <div className="inline-flex" >
                         <div className="listing-info">
-                            <Link to={`/listings/kitchens/${kitchen.id}`}>
+                            <Link to={`/admin/verify/kitchens/${kitchen.id}`}>
                                 <img src={kitchen.images.length !== 0 ? kitchen.images[0].thumbnail : "/static/media/no-image.jpg"}
                                     alt={kitchen.name} className="img-thumbnail" />
                             </Link>
                         </div>
                         <div className="listing-info">
-                            <Link to={`/verify/kitchens/${kitchen.id}`}>
+                            <Link to={`/admin/verify/kitchens/${kitchen.id}`}>
                                 <h4>{kitchen.name}</h4>
                                 <h6>{kitchen.type}</h6>
                                 <h4>{kitchen.size} m<sup>2</sup> </h4>
                                 <h3 className="price-m">€{kitchen.price} / h</h3>
                             </Link>
-                            <Link className="address" to={`/verify/kitchens/${kitchen.id}`} >
+                            <Link className="address" to={`/admin/verify/kitchens/${kitchen.id}`} >
                                 {kitchen.address}
                             </Link>
                         </div>
@@ -65,7 +65,7 @@ export default class extends Component {
                         </div>
                     </div>
                     <div className="listing-info">
-                        <Link to={`/verify/kitchens/${kitchen.id}`}  >
+                        <Link to={`/admin/verify/kitchens/${kitchen.id}`}  >
                             <button className="btn btn-orange btn-verify">Verify</button>
                         </Link>
                     </div>

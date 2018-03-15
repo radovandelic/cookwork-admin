@@ -30,8 +30,9 @@ class App extends Component {
               :
               <Switch>
                 <Route exact path="/" component={Dashboard} />
-                <Route exact path="/verify/kitchens" component={Browse} />
-                <Route exact path="/verify/kitchens/:id" component={VerifyKitchen} />
+                <Route exact path="/admin" component={Dashboard} />
+                <Route exact path="/admin/verify/kitchens" component={Browse} />
+                <Route exact path="/admin/verify/kitchens/:id" component={VerifyKitchen} />
                 <Route component={NotFound} />
               </Switch >
             }
