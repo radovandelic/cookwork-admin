@@ -6,7 +6,7 @@ const morgan = require('morgan');
 
 const app = express()
 const ip = process.env.IP || "0.0.0.0";
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 1337;
 const env = process.env.NODE_ENV || "production";
 
 app.use(compression())
