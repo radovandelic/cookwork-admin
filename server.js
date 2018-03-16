@@ -8,7 +8,7 @@ const app = express()
 const ip = process.env.IP || "0.0.0.0";
 const port = process.env.PORT || 1337;
 const env = process.env.NODE_ENV || "production";
-const index = process.env.INDEX || "admin.html";
+const index = process.env.INDEX || "index.html";
 
 app.use(compression())
 app.use(morgan('dev'))
@@ -26,5 +26,4 @@ setImmediate(() => {
     })
 })
 
-//export default app
 module.exports = app;
