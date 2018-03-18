@@ -133,6 +133,7 @@ module.exports = {
         options: {
           search: 'http://0.0.0.0:9000/api',
           replace: '/api',
+          flags: 'g'
         },
         loader: require.resolve('string-replace-loader')
       },

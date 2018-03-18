@@ -13,7 +13,7 @@ for (let index = 0; index < 25; index++) {
     hourOptions.push(<option value={String(index)}>{index}</option>);
 }
 
-const equipment = [
+/* const equipment = [
     "parking", "toilets", "fridge", "bainMarie", "mixer", "electronicCashier", "coolingCell", "nColdRoom",
     "pColdRoom", "etuve", "extraction", "oven", "pizzaOven", "fryer", "grill", "juicer", "pastaMachine",
     "mixMachine", "sauceMachine", "vacuumMachine", "microwave", "piano", "workplan", "griddle", "ceramicHob", "induction",
@@ -23,7 +23,8 @@ const equipment = [
 
 const staff = [
     "cookstaff", "roomstaff", "dishwashers", "cleaning", "storage", "refrigeratorVehicle", "reception"
-]
+] */
+
 const successMessage = "The kitchen has been verified and published."
 const errorMessageConnect = "There has been an error connecting to the server. Please try again later."
 var errorMessageUnauthorized = "Unauthorized access."
@@ -265,6 +266,13 @@ class StyledForm extends Component {
                                 <option value="Antwerpen">Antwerpen</option>
                                 <option value="Brabant">Brabant</option>
                                 <option value="Bruxelles">Bruxelles</option>
+                                <option value="East Flanders">East Flanders</option>
+                                <option value="Hainaut">Hainaut</option>
+                                <option value="Liege">Liege</option>
+                                <option value="Limburg">Limburg</option>
+                                <option value="Luxembourg">Luxembourg</option>
+                                <option value="Namur">Namur</option>
+                                <option value="West Flanders">West Flanders</option>
                             </select>
                         </div>
                         <div className="input-div" >
