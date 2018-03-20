@@ -266,13 +266,13 @@ class StyledForm extends Component {
                                 <option value="Antwerpen">Antwerpen</option>
                                 <option value="Brabant">Brabant</option>
                                 <option value="Bruxelles">Bruxelles</option>
-                                <option value="East Flanders">East Flanders</option>
+                                <option value="EastFlanders">East Flanders</option>
                                 <option value="Hainaut">Hainaut</option>
                                 <option value="Liege">Liege</option>
                                 <option value="Limburg">Limburg</option>
                                 <option value="Luxembourg">Luxembourg</option>
                                 <option value="Namur">Namur</option>
-                                <option value="West Flanders">West Flanders</option>
+                                <option value="WestFlanders">West Flanders</option>
                             </select>
                         </div>
                         <div className="input-div" >
