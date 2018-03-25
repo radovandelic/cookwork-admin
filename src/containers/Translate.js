@@ -84,6 +84,7 @@ class Form extends Component {
         const Items = []
         if (translations && translations.equipment) {
             for (const group in translations) {
+                Items.push(<tr key={group}><th colSpan="4"><h2>{group + " group"}</h2></th></tr>)
                 if (group !== "faq") {
                     for (const prop in translations[group].fr) {
                         const translation = translations[group];
