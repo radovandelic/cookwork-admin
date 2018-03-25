@@ -3,14 +3,14 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import base64 from 'base-64';
 import { Popup } from '../components';
-import { updateKitchen, updateUser } from '../actions';
+import { updateUser } from '../actions';
 import "../styles/forms.css";
 
 var errorMessageConnect = "There has been an error connecting to the server. Please try again later."
 var errorMessageNotFound = "E-mail or password not found."
 var errorMessageUnauthorized = "Unauthorized access."
 
-class StyledForm extends Component {
+class Form extends Component {
 
     constructor(props) {
         super(props);
@@ -104,18 +104,15 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        updateKitchen: (kitchen) => {
-            dispatch(updateKitchen(kitchen));
-        },
         updateUser: (user) => {
             dispatch(updateUser(user));
         }
     }
 }
 
-StyledForm = connect(
+Form = connect(
     mapStateToProps,
     mapDispatchToProps
-)(StyledForm)
+)(Form)
 
-export default StyledForm;
+export default Form;

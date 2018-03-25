@@ -29,7 +29,7 @@ const successMessage = "The kitchen has been verified and published."
 const errorMessageConnect = "There has been an error connecting to the server. Please try again later."
 var errorMessageUnauthorized = "Unauthorized access."
 
-class StyledForm extends Component {
+class Form extends Component {
 
     constructor(props) {
         super(props);
@@ -498,9 +498,9 @@ const mapStateToProps = state => {
 }
 
 
-StyledForm = connect(
+Form = connect(
     mapStateToProps,
     null
-)(StyledForm)
+)(Form)
 
-export default StyledForm;
+export default Form;

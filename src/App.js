@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Header, Footer, NotFound } from './components';
-import { Login, Dashboard, Browse, VerifyKitchen } from './containers';
+import { Login, Dashboard, Browse, VerifyKitchen, Translate } from './containers';
 import './styles/App.css';
 
 const ScrollToTop = () => {
@@ -31,6 +31,7 @@ class App extends Component {
               <Switch>
                 <Route exact path="/" component={Dashboard} />
                 <Route exact path="/admin" component={Dashboard} />
+                <Route exact path="/admin/translate" component={Translate} />
                 <Route exact path="/admin/verify/kitchens" component={Browse} />
                 <Route exact path="/admin/verify/kitchens/:id" component={VerifyKitchen} />
                 <Route component={NotFound} />
