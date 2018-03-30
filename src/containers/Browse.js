@@ -18,7 +18,7 @@ export default class extends Component {
         };
     }
     componentDidMount = () => {
-        let url = 'http://0.0.0.0:9000/api/kitchens';
+        let url = 'http://0.0.0.0:9000/api/kitchens?verified=false';
 
         let headers = new Headers();
         headers.append('Accept', 'application/json');
