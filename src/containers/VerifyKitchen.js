@@ -58,8 +58,18 @@ class Form extends Component {
             headers: headers
         })
             .then(response => response.json())
-            .then(data => {
-                this.setState({ kitchen: this.formatDefaultValues(data) });
+            .then(kitchen => {
+                this.setState({ kitchen: this.formatDefaultValues(kitchen) });
+                url = `http://0.0.0.0:9000/api/users/${kitchen.user.id}/?access_token=${access_token}`;
+                return fetch(url, {
+                    method: 'GET',
+                    headers: headers
+                })
+            })
+            .then(response => response.json())
+            .then(user => {
+                console.log(user)
+                this.setState({ user });
             })
             .catch(err => {
                 this.setState({
@@ -180,17 +190,17 @@ class Form extends Component {
 
     render = () => {
 
-        let { kitchen } = this.state;
+        let { user, kitchen } = this.state;
         let equipment = []
         let staff = []
         for (let e in kitchen.equipment) {
             equipment.push(
-                <li> {e} </li>
+                <li key={e}> {e} </li>
             )
         }
         for (let s in kitchen.staff) {
             staff.push(
-                <li> {s} </li>
+                <li key={s}> {s} </li>
             )
         }
         //kitchen = this.formatDefaultValues(kitchen);
@@ -204,9 +214,9 @@ class Form extends Component {
                         <h4>Kitchen Verification</h4>
                         {kitchen.user ? (
                             <p style={{ textAlign: "justify" }}>
-                                User: {kitchen.user ? kitchen.user.name : ""} <br />
-                                Name: {kitchen.user ? kitchen.user.firstName + " " + kitchen.user.lastName : ""} <br />
-                                email: <a href={"mailto:" + kitchen.user.email}>{kitchen.user.email} </a>
+                                User: {user ? user.name : ""} <br />
+                                Name: {user ? user.firstName + " " + user.lastName : ""} <br />
+                                email: <a href={"mailto:" + user.email}>{user.email} </a>
 
                             </p>)
                             :
@@ -225,7 +235,7 @@ class Form extends Component {
                         </div>
                         <div className="input-div" >
                             <label htmlFor="type">Type de bien: </label>
-                            <input type="text" ref="type" id="type" value={kitchen.type} />
+                            <input type="text" ref="type" id="type" readOnly="true" value={kitchen.type} />
                         </div>
                         {/* 
                         <div className="input-div" style={{ height: '150px' }}>
@@ -408,7 +418,7 @@ class Form extends Component {
 
                         <div className="input-div" >
                             <label htmlFor="cancellation">Conditions d'annulation: </label>
-                            <input type="text" /*ref="cancellation"*/ id="cancellation" value={kitchen.cancellation} />
+                            <input type="text" /*ref="cancellation"*/ readOnly="true" id="cancellation" value={kitchen.cancellation} />
                         </div>
                         <div className="input-div" >
                             <label htmlFor="event-capacity1">Capacité debout pour évènement:</label>
