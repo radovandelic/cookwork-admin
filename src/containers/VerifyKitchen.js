@@ -287,21 +287,6 @@ class Form extends Component {
                             <label htmlFor="VAT">Numéro de TVA</label>
                             <input type="text" ref="VAT" id="VAT" defaultValue={kitchen.VAT} />
                         </div>
-                        <label htmlFor="hours">Jours de disponibilité</label>
-                        {kitchen.days
-                            ?
-                            <div className="input-div-hours" >
-                                <select ref="hoursFrom" id="hoursFrom" defaultValue={kitchen.hoursFrom} >
-                                    <option value={kitchen.days.daysFrom}>{kitchen.days.daysFrom}</option>
-                                </select>
-                                &nbsp;&nbsp;-&nbsp;&nbsp;
-                            <select ref="hoursTo" id="hoursTo" defaultValue={kitchen.hoursTo} >
-                                    <option value={kitchen.days.daysTo}>{kitchen.days.daysTo}</option>
-                                </select>
-                            </div>
-                            :
-                            null
-                        }
                         <label htmlFor="hours">Heures de disponibilité</label>
                         <div className="input-div-hours" >
                             <select ref="hoursFrom" id="hoursFrom" defaultValue={kitchen.hoursFrom} >
