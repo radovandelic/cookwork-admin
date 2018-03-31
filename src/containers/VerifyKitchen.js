@@ -68,7 +68,6 @@ class Form extends Component {
             })
             .then(response => response.json())
             .then(user => {
-                console.log(user)
                 this.setState({ user });
             })
             .catch(err => {
