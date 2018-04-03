@@ -52,7 +52,7 @@ class Users extends Component {
                             <th><h3>region</h3></th>
                             <th><h3>phone</h3></th>
                             <th><h3>activity</h3></th>
-                            <th><h3>type</h3></th>
+                            <th><h3>role</h3></th>
                         </tr>
                     </thead>
                     <tbody>
