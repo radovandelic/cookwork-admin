@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Popup } from '../components';
-import '../styles/browse.css';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { Popup } from "../components";
+import "../styles/browse.css";
 
-var errorMessageConnect = "There has been an error connecting to the server. Please try again later."
+var errorMessageConnect = "There has been an error connecting to the server. Please try again later.";
 
 export default class extends Component {
 
@@ -11,37 +11,43 @@ export default class extends Component {
         super(props);
         this.state = {
             kitchens: [],
+            count: -1,
             overlay: "overlay off",
             popup: {
-                message: errorMessageConnect
-            }
+                message: errorMessageConnect,
+            },
         };
     }
-    componentDidMount = () => {
-        let url = 'http://0.0.0.0:9000/api/kitchens?verified=false';
+    componentWillMount = () => {
+        const verified = this.props.match.url === "/admin/edit/kitchens";
+        const url = `http://0.0.0.0:9000/api/kitchens?verified=${verified}`;
+        const headers = new Headers();
+        headers.append("Accept", "application/json");
+        headers.append("Content-Type", "application/json");
 
-        let headers = new Headers();
-        headers.append('Accept', 'application/json');
-        headers.append('Content-Type', 'application/json');
         fetch(url, {
-            method: 'GET',
-            headers: headers
+            method: "GET",
+            headers: headers,
         })
-            .then(response => response.json())
+            .then(response => {
+                this.setState({ status: response.status });
+                return response.json();
+            })
             .then(data => {
-                this.setState({ kitchens: data.rows });
+                this.setState({ kitchens: data.rows, count: data.count });
             })
             .catch(err => {
-                this.setState({ overlay: "overlay on" })
+                this.setState({ overlay: "overlay on" });
             });
     }
 
     render = () => {
-        let { kitchens } = this.state;
-        let listings = [];
+        const verified = this.props.match.url === "/admin/edit/kitchens";
+        const { kitchens, count } = this.state;
+        const listings = [];
         for (const kitchen of kitchens) {
             listings.push(
-                <div className="thumb-listing-container">
+                <div className="thumb-listing-container" key={kitchen.id}>
                     <div className="inline-flex" >
                         <div className="listing-info">
                             <Link to={`/admin/verify/kitchens/${kitchen.id}`}>
@@ -65,20 +71,19 @@ export default class extends Component {
                         </div>
                     </div>
                     <div className="listing-info">
-                        <Link to={`/admin/verify/kitchens/${kitchen.id}`}  >
-                            <button className="btn btn-orange btn-verify">Verify</button>
+                        <Link to={verified ? `/admin/edit/kitchens/${kitchen.id}` : `/admin/verify/kitchens/${kitchen.id}`}  >
+                            <button className="btn btn-orange btn-verify">{verified ? "View / Edit" : "Verify"}</button>
                         </Link>
                     </div>
-
                 </div>
-            )
+            );
         }
         return (<div className="home-container">
-            {listings}
+            {count ? listings : <div className="dashoard-container"><h4>No results</h4></div>}
             <Popup overlay={this.state.overlay} title="Error"
                 message={this.state.popup.message} btn="ok" close={this.closePopup} />
         </div>
-        )
+        );
     }
 
     closePopup = () => {

@@ -1,11 +1,12 @@
-import Login from './Login';
-import Home from './Home';
-import Dashboard from './Dashboard';
-import Browse from './Browse';
-import Kitchen from './Kitchen';
-import VerifyKitchen from './VerifyKitchen';
-import Translate from './Translate';
+import Login from "./Login";
+import Home from "./Home";
+import Dashboard from "./Dashboard";
+import Browse from "./Browse";
+import Kitchen from "./Kitchen";
+import VerifyKitchen from "./VerifyKitchen";
+import Users from "./Users";
+import Translate from "./Translate";
 
 export {
-    Home, Login, Dashboard, VerifyKitchen, Browse, Kitchen, Translate
-}
+    Home, Login, Dashboard, VerifyKitchen, Browse, Kitchen, Users, Translate,
+};

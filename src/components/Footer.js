@@ -1,5 +1,5 @@
-import React from 'react';
-import '../styles/footer.css'
+import React from "react";
+import "../styles/footer.css";
 
 export default () => {
     return (
@@ -11,5 +11,5 @@ export default () => {
                 </li>
             </ul>
         </footer>
-    )
-}
+    );
+};

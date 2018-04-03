@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { Popup } from '../components'
-import '../styles/kitchen.css';
+import React, { Component } from "react";
+import { Popup } from "../components";
+import "../styles/kitchen.css";
 
-var errorTitle = "Error"
-var errorMessageConnect = "There has been an error connecting to the server. Please try again later."
+var errorTitle = "Error";
+var errorMessageConnect = "There has been an error connecting to the server. Please try again later.";
 
 class Kitchen extends Component {
 
@@ -11,39 +11,39 @@ class Kitchen extends Component {
         super(props);
         this.state = {
             kitchen: {
-                images: []
+                images: [],
             },
             gallery: [],
             overlay: "overlay off",
             popup: {
-                message: errorMessageConnect
-            }
+                message: errorMessageConnect,
+            },
         };
     }
 
     componentDidMount = () => {
         const { id } = this.props.match.params;
-        let url = 'http://0.0.0.0:9000/api/kitchens/' + id;
+        const url = "http://0.0.0.0:9000/api/kitchens/" + id;
 
-        let headers = new Headers();
-        headers.append('Accept', 'application/json');
-        headers.append('Content-Type', 'application/json');
+        const headers = new Headers();
+        headers.append("Accept", "application/json");
+        headers.append("Content-Type", "application/json");
         fetch(url, {
-            method: 'GET',
-            headers: headers
+            method: "GET",
+            headers: headers,
         })
             .then(response => response.json())
             .then(data => {
                 let gallery = [];
                 if (data.images && data.images[0]) {
                     gallery = [];
-                    for (let image of data.images) {
+                    for (const image of data.images) {
                         gallery.push(
                             <div key={image.id} data-p="170.00">
                                 <img alt={data.name} data-u="image" src={image.large} />
                                 <img alt={data.name} data-u="thumb" src={image.thumbnail} />
                             </div>
-                        )
+                        );
                     }
                 } else {
                     gallery = (
@@ -51,18 +51,18 @@ class Kitchen extends Component {
                             <img alt={data.name} data-u="image" src="/static/media/no-image.jpg" />
                             <img alt={data.name} data-u="thumb" src="/static/media/no-image.jpg" />
                         </div>
-                    )
+                    );
                 }
                 this.setState({ kitchen: data, gallery }, () => {
 
-                    //load carousel scripts here so we don't slow down the rest of the app
-                    if (!document.getElementById("jssor")) { //check if scripts are already loaded
+                    // load carousel scripts here so we don't slow down the rest of the app
+                    if (!document.getElementById("jssor")) { // check if scripts are already loaded
                         let script = document.createElement("script");
                         script.id = "jssor";
                         script.src = "https://cdnjs.cloudflare.com/ajax/libs/jssor-slider/27.1.0/jssor.slider.min.js";
                         script.async = true;
-                        //script.integrity = "sha256-I6cF3fG3SkCsFWISv0FVllzVmZmDDLuiUcw60+n1Q3I=";
-                        //script.crossorigin = "anonymous";
+                        // script.integrity = "sha256-I6cF3fG3SkCsFWISv0FVllzVmZmDDLuiUcw60+n1Q3I=";
+                        // script.crossorigin = "anonymous";
                         document.body.appendChild(script);
 
                         script = document.createElement("script");
@@ -76,12 +76,12 @@ class Kitchen extends Component {
                 });
             })
             .catch(err => {
-                this.setState({ overlay: "overlay on" })
+                this.setState({ overlay: "overlay on" });
             });
     }
 
     render = () => {
-        let { kitchen } = this.state;
+        const { kitchen } = this.state;
         return (
             <div className="listing-container">
                 <div className="carousel" >
@@ -134,7 +134,7 @@ class Kitchen extends Component {
                 <Popup overlay={this.state.overlay} title={errorTitle}
                     message={this.state.popup.message} btn="ok" close={this.closePopup} />
             </div>
-        )
+        );
     }
 
     closePopup = () => {

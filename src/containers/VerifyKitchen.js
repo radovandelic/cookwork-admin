@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { Popup } from '../components'
+import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import { Popup } from "../components";
 import "../styles/forms.css";
 
 const capacityOptions = [];
@@ -25,9 +25,9 @@ const staff = [
     "cookstaff", "roomstaff", "dishwashers", "cleaning", "storage", "refrigeratorVehicle", "reception"
 ] */
 
-const successMessage = "The kitchen has been verified and published."
-const errorMessageConnect = "There has been an error connecting to the server. Please try again later."
-var errorMessageUnauthorized = "Unauthorized access."
+const successMessage = "The kitchen has been verified and published.";
+const errorMessageConnect = "There has been an error connecting to the server. Please try again later.";
+var errorMessageUnauthorized = "Unauthorized access.";
 
 class Form extends Component {
 
@@ -41,8 +41,8 @@ class Form extends Component {
             popup: {
                 message: errorMessageConnect,
                 btn: "ok",
-                title: "Error"
-            }
+                title: "Error",
+            },
         };
     }
     componentWillMount = () => {
@@ -50,21 +50,21 @@ class Form extends Component {
         const { id } = this.props.match.params;
         let url = `http://0.0.0.0:9000/api/kitchens/${id}/?access_token=${access_token}`;
 
-        let headers = new Headers();
-        headers.append('Accept', 'application/json');
-        headers.append('Content-Type', 'application/json');
+        const headers = new Headers();
+        headers.append("Accept", "application/json");
+        headers.append("Content-Type", "application/json");
         fetch(url, {
-            method: 'GET',
-            headers: headers
+            method: "GET",
+            headers: headers,
         })
             .then(response => response.json())
             .then(kitchen => {
                 this.setState({ kitchen: this.formatDefaultValues(kitchen) });
                 url = `http://0.0.0.0:9000/api/users/${kitchen.user.id}/?access_token=${access_token}`;
                 return fetch(url, {
-                    method: 'GET',
-                    headers: headers
-                })
+                    method: "GET",
+                    headers: headers,
+                });
             })
             .then(response => response.json())
             .then(user => {
@@ -76,9 +76,9 @@ class Form extends Component {
                     popup: {
                         message: "There has been an error connecting to the server. Please try again later.",
                         title: "Error",
-                        btn: "ok"
-                    }
-                })
+                        btn: "ok",
+                    },
+                });
             });
 
     }
@@ -94,17 +94,17 @@ class Form extends Component {
         submittedValues.standingCapacity = Number(submittedValues.standingCapacity) || undefined;
         submittedValues.sittingCapacity = Number(submittedValues.sittingCapacity) || undefined;
         submittedValues.hours = {
-            hoursFrom: Number(submittedValues.hoursFrom) || undefined,
-            hoursTo: Number(submittedValues.hoursTo) || undefined
-        }
+            hoursFrom: Number(submittedValues.hoursFrom) || 0,
+            hoursTo: Number(submittedValues.hoursTo) || 24,
+        };
         submittedValues.equipment = undefined;
         submittedValues.staff = undefined;
-        for (let key in submittedValues) {
-            submittedValues[key] = (submittedValues[key] && key !== 'user') ? submittedValues[key] : oldValues[key];
+        for (const key in submittedValues) {
+            submittedValues[key] = (submittedValues[key] && key !== "user") ? submittedValues[key] : oldValues[key];
         }
 
-        //place equipment booleans inside equipment object
-        /*for (let e of equipment) {
+        // place equipment booleans inside equipment object
+        /* for (let e of equipment) {
             if (submittedValues[e]) {
                 submittedValues.equipment[e] = submittedValues[e];
                 submittedValues[e] = undefined;
@@ -125,22 +125,22 @@ class Form extends Component {
         e.preventDefault();
         const { user } = this.props;
         const { id } = this.props.match.params;
-        let submittedValues = {}
-        for (let ref in this.refs) {
-            submittedValues[ref] = this.refs[ref].value ? this.refs[ref].value : undefined
+        let submittedValues = {};
+        for (const ref in this.refs) {
+            submittedValues[ref] = this.refs[ref].value ? this.refs[ref].value : undefined;
         }
         submittedValues = this.formatData(submittedValues);
         submittedValues.verified = true;
         submittedValues.access_token = user.access_token;
-        let url = `http://0.0.0.0:9000/api/kitchens/${id}/`;
-        let query = {
+        const url = `http://0.0.0.0:9000/api/kitchens/${id}/`;
+        const query = {
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                "Accept": "application/json",
+                "Content-Type": "application/json",
             },
-            method: 'PUT',
-            body: JSON.stringify(submittedValues)
-        }
+            method: "PUT",
+            body: JSON.stringify(submittedValues),
+        };
         fetch(url, query)
             .then(res => res.json())
             .then(data => {
@@ -148,36 +148,36 @@ class Form extends Component {
                     popup: {
                         message: successMessage,
                         title: "Success",
-                        btn: "ok"
+                        btn: "ok",
                     },
-                    overlay: "overlay on"
-                })
+                    overlay: "overlay on",
+                });
             })
             .catch(err => {
                 this.setState({
                     popup: {
                         message: errorMessageConnect,
                         title: "Error",
-                        btn: "ok"
+                        btn: "ok",
                     },
-                    overlay: "overlay on"
-                })
+                    overlay: "overlay on",
+                });
             });
     }
 
     formatDefaultValues = (kitchen) => {
         if (!kitchen.id) {
-            return this.setState({ redirect: '/admin' })
+            return this.setState({ redirect: "/admin" });
         }
         if (kitchen.events) {
             kitchen.events = "true";
         }
-        for (let id in kitchen.equipment) {
-            kitchen[id] = kitchen.equipment[id]; //format object so it's readable by the form
+        for (const id in kitchen.equipment) {
+            kitchen[id] = kitchen.equipment[id]; // format object so it's readable by the form
         }
 
-        for (let id in kitchen.staff) {
-            kitchen[id] = kitchen.staff[id]; //format object so it's readable by the form
+        for (const id in kitchen.staff) {
+            kitchen[id] = kitchen.staff[id]; // format object so it's readable by the form
         }
         if (kitchen.hours) {
             kitchen.hoursTo = String(kitchen.hours.hoursTo);
@@ -188,21 +188,20 @@ class Form extends Component {
     }
 
     render = () => {
-
-        let { user, kitchen } = this.state;
-        let equipment = []
-        let staff = []
-        for (let e in kitchen.equipment) {
+        const { user, kitchen } = this.state;
+        const verified = this.props.match.url === `/admin/edit/kitchens/${kitchen.id}`;
+        const equipment = [];
+        const staff = [];
+        for (const e in kitchen.equipment) {
             equipment.push(
                 <li key={e}> {e} </li>
-            )
+            );
         }
-        for (let s in kitchen.staff) {
+        for (const s in kitchen.staff) {
             staff.push(
                 <li key={s}> {s} </li>
-            )
+            );
         }
-        //kitchen = this.formatDefaultValues(kitchen);
 
         return (
             this.state.redirect
@@ -210,7 +209,7 @@ class Form extends Component {
                 :
                 <div>
                     <form onSubmit={this.submit} id="form2" className="form-container" key={kitchen.id}>
-                        <h4>Kitchen Verification</h4>
+                        <h4> {verified ? kitchen.name : "Kitchen Verification"}</h4>
                         {kitchen.user ? (
                             <p style={{ textAlign: "justify" }}>
                                 User: {user ? user.name : ""} <br />
@@ -230,11 +229,11 @@ class Form extends Component {
                         </div>
                         <div className="input-div" >
                             <label htmlFor="description">Descriptif du bien </label>
-                            <textarea style={{ width: '100%' }} rows="4" ref="description" id="description" defaultValue={kitchen.description} />
+                            <textarea style={{ width: "100%" }} rows="4" ref="description" id="description" defaultValue={kitchen.description} />
                         </div>
                         <div className="input-div" >
                             <label htmlFor="type">Type de bien: </label>
-                            <input type="text" ref="type" id="type" readOnly="true" value={kitchen.type} />
+                            <input type="text" ref="type" id="type" readOnly value={kitchen.type} />
                         </div>
                         {/* 
                         <div className="input-div" style={{ height: '150px' }}>
@@ -266,27 +265,18 @@ class Form extends Component {
                         </div>
                         <div className="input-div" >
                             <label htmlFor="postalcode">Code postal</label>
-                            <input type="number" ref="postalCode" id="postalcode" min="1000" max="9999" defaultValue={kitchen.postalCode} />
+                            <input type="number" ref="postalCode" id="postalcode" min="1000" max="9999" readOnly defaultValue={kitchen.postalCode} />
                         </div>
+                        <label htmlFor="region">Ville/Region</label>
                         <div className="input-div" >
-                            <label htmlFor="region">Ville/Region</label>
                             <select type="text" ref="region" id="region"
                                 defaultValue={kitchen.region} >
-                                <option value="Antwerpen">Antwerpen</option>
-                                <option value="Brabant">Brabant</option>
-                                <option value="Bruxelles">Bruxelles</option>
-                                <option value="EastFlanders">East Flanders</option>
-                                <option value="Hainaut">Hainaut</option>
-                                <option value="Liege">Liege</option>
-                                <option value="Limburg">Limburg</option>
-                                <option value="Luxembourg">Luxembourg</option>
-                                <option value="Namur">Namur</option>
-                                <option value="WestFlanders">West Flanders</option>
+                                <option value={kitchen.region}>{kitchen.region}</option>
                             </select>
                         </div>
                         <div className="input-div" >
                             <label htmlFor="size">Superficie du bien (en m2)</label>
-                            <input type="number" ref="size" id="size" min="1" max="2000" defaultValue={kitchen.size} />
+                            <input type="number" ref="size" id="size" min="1" max="5000" defaultValue={kitchen.size} />
                         </div>
                         <div className="input-div" >
                             <label htmlFor="AFSCA">Numéro d'unité d'établissement (AFSCA)</label>
@@ -306,19 +296,19 @@ class Form extends Component {
                                 <option value={kitchen.hoursTo}>{kitchen.hoursTo}</option>
                             </select>
                         </div>
+                        <label htmlFor="capacity">Nombre de personnes pouvant travailler en cuisine</label>
                         <div className="input-div" >
-                            <label htmlFor="capacity">Nombre de personnes pouvant travailler en cuisine</label>
                             <select ref="capacity" id="capacity" defaultValue={kitchen.capacity} >
                                 <option value={kitchen.capacity}>{kitchen.capacity}</option>
                             </select>
                         </div>
                         <div className="input-div" >
                             <label htmlFor="price">Prix à l'heure (HTVA)</label>
-                            <input type="number" ref="price" id="price" min="15" max="200" defaultValue={kitchen.price} />
+                            <input type="number" ref="price" id="price" min="15" max="500" defaultValue={kitchen.price} />
                         </div>
                         <div className="input-div" >
                             <label htmlFor="rent">Prix au mois pour un entrepreneur (une équipe de 2 personnes max) (HTVA)</label>
-                            <input type="number" ref="rent" id="rent" min="100" max="20000" defaultValue={kitchen.rent} />
+                            <input type="number" ref="rent" id="rent" min="100" max="50000" defaultValue={kitchen.rent} />
                         </div>
                         <label htmlFor="equipment">Equipements disponibles:</label>
                         <div className="input-div-checkbox" >
@@ -417,7 +407,7 @@ class Form extends Component {
 
                         <div className="input-div" >
                             <label htmlFor="cancellation">Conditions d'annulation: </label>
-                            <input type="text" /*ref="cancellation"*/ readOnly="true" id="cancellation" value={kitchen.cancellation} />
+                            <input type="text" /* ref="cancellation"*/ readOnly="true" id="cancellation" value={kitchen.cancellation} />
                         </div>
                         <div className="input-div" >
                             <label htmlFor="event-capacity1">Capacité debout pour évènement:</label>
@@ -428,7 +418,7 @@ class Form extends Component {
                         {/* ) : null} */}
                         <div className="inline">
                             <div className="input-div" >
-                                <button id="submit" type="submit" className="btn btn-orange">Verify & publish Kitchen</button>
+                                <button id="submit" type="submit" className="btn btn-orange">{verified ? "Save changes" : "Verify & publish Kitchen"}</button>
                             </div>
                             <div className="input-div" >
                                 <button id="delete" type="button" onClick={() => {
@@ -436,12 +426,12 @@ class Form extends Component {
                                         popup: {
                                             message: "Are you sure you want to reject and delete this listing?",
                                             title: "Confirm",
-                                            btn: "yesno"
+                                            btn: "yesno",
                                         },
-                                        overlay: "overlay on"
-                                    })
+                                        overlay: "overlay on",
+                                    });
                                 }}
-                                    className="btn btn-danger">Reject and delete listing</button>
+                                className="btn btn-danger">{verified ? "Delete listing" : "Reject and delete listing"}</button>
                             </div>
                         </div>
                         <div id="header_spacing"></div>
@@ -453,21 +443,21 @@ class Form extends Component {
                         close={this.closePopup}
                         yes="delete" no="false" />
                 </div>
-        )
+        );
     }
 
     delete = () => {
         const { user } = this.props;
         const { id } = this.props.match.params;
-        let url = `http://0.0.0.0:9000/api/kitchens/${id}/`;
-        let query = {
+        const url = `http://0.0.0.0:9000/api/kitchens/${id}/`;
+        const query = {
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                "Accept": "application/json",
+                "Content-Type": "application/json",
             },
-            method: 'DELETE',
-            body: JSON.stringify({ access_token: user.access_token })
-        }
+            method: "DELETE",
+            body: JSON.stringify({ access_token: user.access_token }),
+        };
         fetch(url, query)
             .then(res => {
                 switch (res.status) {
@@ -483,10 +473,10 @@ class Form extends Component {
                 }
             })
             .then(data => {
-                this.setState({ overlay: "overlay on" })
+                this.setState({ overlay: "overlay on" });
             })
             .catch(err => {
-                this.setState({ overlay: "overlay on" })
+                this.setState({ overlay: "overlay on" });
             });
     }
 
@@ -494,22 +484,20 @@ class Form extends Component {
         if (e.target.value === "delete") {
             this.delete();
         }
-        let redirect = this.state.popup.title === "Success" ? "/admin/verify/kitchens" : false;
-        redirect = this.state.popup.title === "Deleted" ? "/admin/verify/kitchens" : redirect;
-        this.setState({ overlay: 'overlay off', redirect: redirect })
+        const redirect = this.state.popup.title === "Success" || this.state.popup.title === "Deleted" ? "/admin" : false;
+        this.setState({ overlay: "overlay off", redirect: redirect });
     }
 }
 
 const mapStateToProps = state => {
     return {
-        user: state.user
-    }
-}
-
+        user: state.user,
+    };
+};
 
 Form = connect(
     mapStateToProps,
     null
-)(Form)
+)(Form);
 
 export default Form;

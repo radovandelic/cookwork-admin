@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { Popup } from '../components';
-import { updateUser } from '../actions';
+import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import { Popup } from "../components";
+import { updateUser } from "../actions";
 import "../styles/forms.css";
 
-var errorMessageConnect = "There has been an error connecting to the server. Please try again later."
-var errorMessageNotFound = "E-mail or password not found."
-var errorMessageUnauthorized = "Unauthorized access."
+var errorMessageConnect = "There has been an error connecting to the server. Please try again later.";
+var errorMessageNotFound = "E-mail or password not found.";
+var errorMessageUnauthorized = "Unauthorized access.";
 
 class Form extends Component {
 
@@ -19,42 +19,42 @@ class Form extends Component {
             translations: { id: "0" },
             overlay: "overlay off",
             popup: {
-                message: errorMessageConnect
-            }
+                message: errorMessageConnect,
+            },
         };
     }
 
     componentWillMount = () => {
-        let url = 'http://0.0.0.0:9000/api/translations?sort=-createdAt&limit=1';
+        const url = "http://0.0.0.0:9000/api/translations?sort=-createdAt&limit=1";
 
-        let headers = new Headers();
-        headers.append('Accept', 'application/json');
-        headers.append('Content-Type', 'application/json');
-        fetch(url, { method: 'GET', headers: headers })
+        const headers = new Headers();
+        headers.append("Accept", "application/json");
+        headers.append("Content-Type", "application/json");
+        fetch(url, { method: "GET", headers: headers })
             .then(res => res.json())
             .then(data => this.setState({ translations: data.rows[0].translations, id: data.rows[0].id }))
-            .catch(err => this.setState({ overlay: "overlay on" }))
+            .catch(err => this.setState({ overlay: "overlay on" }));
     }
 
     submit = (e) => {
         e.preventDefault();
         const { user } = this.props;
-        let { translations } = this.state;
-        let url = 'http://0.0.0.0:9000/api/translations';
+        const { translations } = this.state;
+        const url = "http://0.0.0.0:9000/api/translations";
         for (const ref in this.refs) {
-            const props = ref.split(";")
-            translations[props[0]][props[1]][props[2]] = this.refs[ref].value
+            const props = ref.split(";");
+            translations[props[0]][props[1]][props[2]] = this.refs[ref].value;
         }
-        let headers = new Headers();
-        headers.append('Accept', 'application/json');
-        headers.append('Content-Type', 'application/json');
+        const headers = new Headers();
+        headers.append("Accept", "application/json");
+        headers.append("Content-Type", "application/json");
         fetch(url, {
-            method: 'POST',
+            method: "POST",
             headers: headers,
             body: JSON.stringify({
                 access_token: user.access_token,
-                translations
-            })
+                translations,
+            }),
         })
             .then(response => {
                 switch (response.status) {
@@ -72,50 +72,50 @@ class Form extends Component {
                 }
             })
             .then(data => {
-                this.setState({ redirect: "/" })
+                this.setState({ redirect: "/" });
                 updateUser(data.user);
             })
             .catch(err => {
-                this.setState({ overlay: "overlay on" })
+                this.setState({ overlay: "overlay on" });
             });
     }
     render = () => {
-        const { translations, id } = this.state
-        const Items = []
+        const { translations, id } = this.state;
+        const Items = [];
         if (translations && translations.equipment) {
             for (const group in translations) {
-                Items.push(<tr key={group}><th colSpan="4"><h2>{group + " group"}</h2></th></tr>)
+                Items.push(<tr key={group}><th colSpan="4"><h2>{group + " group"}</h2></th></tr>);
                 if (group !== "faq") {
                     for (const prop in translations[group].fr) {
                         const translation = translations[group];
-                        const len = translation['fr'][prop].length;
+                        const len = translation["fr"][prop].length;
                         Items.push(
-                            <tr key={prop}>
+                            <tr key={group + prop}>
                                 <td >
                                     <h3>{prop}</h3>
                                 </td>
-                                <td height={len < 40 ? "50px" : "100px"} >
-                                    {len < 40 ?
-                                        <input type="text" ref={group + ';fr;' + prop} id={prop} defaultValue={translation['fr'][prop]} />
+                                <td height={len < 30 ? "50px" : "100px"} >
+                                    {len < 30 ?
+                                        <input type="text" ref={group + ";fr;" + prop} id={prop} defaultValue={translation["fr"][prop]} />
                                         :
-                                        <textarea ref={group + ';fr;' + prop} id={prop} defaultValue={translation['fr'][prop]} rows="3" />
+                                        <textarea ref={group + ";fr;" + prop} id={prop} defaultValue={translation["fr"][prop]} rows="3" />
                                     }
                                 </td>
-                                <td height={len < 40 ? "50px" : "100px"} >
-                                    {len < 40 ?
-                                        <input type="text" ref={group + ';nl;' + prop} id={prop} defaultValue={translation['nl'][prop]} />
+                                <td height={len < 30 ? "50px" : "100px"} >
+                                    {len < 30 ?
+                                        <input type="text" ref={group + ";nl;" + prop} id={prop} defaultValue={translation["nl"][prop]} />
                                         :
-                                        <textarea ref={group + ';nl;' + prop} id={prop} defaultValue={translation['nl'][prop]} rows="3" />
+                                        <textarea ref={group + ";nl;" + prop} id={prop} defaultValue={translation["nl"][prop]} rows="3" />
                                     }
                                 </td>
-                                <td height={len < 40 ? "50px" : "100px"} >
-                                    {len < 40 ?
-                                        <input type="text" ref={group + ';en;' + prop} id={prop} defaultValue={translation['en'][prop]} />
+                                <td height={len < 30 ? "50px" : "100px"} >
+                                    {len < 30 ?
+                                        <input type="text" ref={group + ";en;" + prop} id={prop} defaultValue={translation["en"][prop]} />
                                         :
-                                        <textarea ref={group + ';en;' + prop} id={prop} defaultValue={translation['en'][prop]} rows="3" />
+                                        <textarea ref={group + ";en;" + prop} id={prop} defaultValue={translation["en"][prop]} rows="3" />
                                     }
                                 </td>
-                            </tr>)
+                            </tr>);
                     }
                 }
             }
@@ -156,7 +156,7 @@ class Form extends Component {
                         message={this.state.popup.message} btn="ok" close={this.closePopup} />
                 </div>
 
-        )
+        );
     }
 
     closePopup = () => {
@@ -166,21 +166,21 @@ class Form extends Component {
 
 const mapStateToProps = state => {
     return {
-        user: state.user
-    }
-}
+        user: state.user,
+    };
+};
 
 const mapDispatchToProps = dispatch => {
     return {
         updateUser: (user) => {
             dispatch(updateUser(user));
-        }
-    }
-}
+        },
+    };
+};
 
 Form = connect(
     mapStateToProps,
     mapDispatchToProps
-)(Form)
+)(Form);
 
 export default Form;

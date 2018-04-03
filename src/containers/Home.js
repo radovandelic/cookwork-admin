@@ -1,7 +1,7 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-import '../styles/home.css';
+import "../styles/home.css";
 
 export default () => {
     return (<div className="home-container">
@@ -73,4 +73,4 @@ export default () => {
         </div>
     </div>
     );
-}
+};

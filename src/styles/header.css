@@ -36,13 +36,14 @@ nav {
     background-color: #484848;
 }
 
-.nav-link-grey,
-.nav-link-grey:focus {
+.nav-link.nav-link-grey,
+.nav-link.nav-link-grey:focus,
+.nav-link.nav-link-grey:active {
     color: #fff;
     background-color: #484848;
 }
 
-.nav-link-grey:hover {
+.nav-link.nav-link-grey:hover {
     background-color: #fff;
     color: #484848;
 }

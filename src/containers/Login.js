@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
-import { connect } from 'react-redux';
-import base64 from 'base-64';
-import { Popup } from '../components';
-import { updateUser } from '../actions';
+import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import base64 from "base-64";
+import { Popup } from "../components";
+import { updateUser } from "../actions";
 import "../styles/forms.css";
 
-var errorMessageConnect = "There has been an error connecting to the server. Please try again later."
-var errorMessageNotFound = "E-mail or password not found."
-var errorMessageUnauthorized = "Unauthorized access."
+var errorMessageConnect = "There has been an error connecting to the server. Please try again later.";
+var errorMessageNotFound = "E-mail or password not found.";
+var errorMessageUnauthorized = "Unauthorized access.";
 
 class Form extends Component {
 
@@ -18,28 +18,28 @@ class Form extends Component {
             redirect: false,
             overlay: "overlay off",
             popup: {
-                message: errorMessageConnect
-            }
+                message: errorMessageConnect,
+            },
         };
     }
 
     submit = (e) => {
         e.preventDefault();
-        let { updateUser } = this.props;
-        let url = 'http://0.0.0.0:9000/api/auth';
-        let username = this.refs.email.value;
-        let password = this.refs.password.value;
+        const { updateUser } = this.props;
+        const url = "http://0.0.0.0:9000/api/auth";
+        const username = this.refs.email.value;
+        const password = this.refs.password.value;
 
-        let headers = new Headers();
-        headers.append('Authorization', 'Basic ' + base64.encode(username + ":" + password));
-        headers.append('Accept', 'application/json');
-        headers.append('Content-Type', 'application/json');
+        const headers = new Headers();
+        headers.append("Authorization", "Basic " + base64.encode(username + ":" + password));
+        headers.append("Accept", "application/json");
+        headers.append("Content-Type", "application/json");
         fetch(url, {
-            method: 'POST',
+            method: "POST",
             headers: headers,
             body: JSON.stringify({
-                role: "admin"
-            })
+                role: "admin",
+            }),
         })
             .then(response => {
                 switch (response.status) {
@@ -61,7 +61,7 @@ class Form extends Component {
                 updateUser(data.user);
             })
             .catch(err => {
-                this.setState({ overlay: "overlay on" })
+                this.setState({ overlay: "overlay on" });
             });
     }
     render = () => {
@@ -88,7 +88,7 @@ class Form extends Component {
                         message={this.state.popup.message} btn="ok" close={this.closePopup} />
                 </div>
 
-        )
+        );
     }
 
     closePopup = () => {
@@ -98,21 +98,21 @@ class Form extends Component {
 
 const mapStateToProps = state => {
     return {
-        user: state.user
-    }
-}
+        user: state.user,
+    };
+};
 
 const mapDispatchToProps = dispatch => {
     return {
         updateUser: (user) => {
             dispatch(updateUser(user));
-        }
-    }
-}
+        },
+    };
+};
 
 Form = connect(
     mapStateToProps,
     mapDispatchToProps
-)(Form)
+)(Form);
 
 export default Form;

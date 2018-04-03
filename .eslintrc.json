@@ -1,0 +1,86 @@
+{
+    "parser": "babel-eslint",
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    "extends": "react-app",
+    "parserOptions": {
+        "ecmaVersion": 7,
+        "ecmaFeatures": {
+            "experimentalObjectRestSpread": true,
+            "jsx": true
+        },
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        "no-constant-condition": "error",
+        "no-cond-assign": "error",
+        "no-unused-vars": "warn",
+        "prefer-const": "warn",
+        "no-empty": "warn",
+        "no-extra-boolean-cast": "warn",
+        "no-unneeded-ternary": "warn",
+        "no-irregular-whitespace": "warn",
+        "indent": [
+            "warn",
+            4,
+            {
+                "SwitchCase": 1
+            }
+        ],
+        "brace-style": [
+            "warn",
+            "1tbs",
+            {
+                "allowSingleLine": true
+            }
+        ],
+        "linebreak-style": [
+            "warn",
+            "unix"
+        ],
+        "quotes": [
+            "warn",
+            "double",
+            {
+                "allowTemplateLiterals": true
+            }
+        ],
+        "semi": [
+            "warn",
+            "always"
+        ],
+        "no-extra-semi": "warn",
+        "comma-dangle": [
+            "warn",
+            "always-multiline"
+        ],
+        "no-multiple-empty-lines": [
+            "warn",
+            {
+                "max": 1
+            }
+        ],
+        "spaced-comment": [
+            "warn",
+            "always",
+            {
+                "exceptions": [
+                    "*"
+                ]
+            }
+        ],
+        "yoda": [
+            "warn",
+            "never",
+            {
+                "exceptRange": true
+            }
+        ],
+        "no-console": 0
+    }
+}

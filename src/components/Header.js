@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import logo from '../logo.jpg';
-import '../styles/header.css';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import logo from "../logo.jpg";
+import "../styles/header.css";
 
 const toggleMenu = () => {
-    const collapse = document.getElementsByClassName('navbar-collapse')[0]
-    collapse.classList.toggle('collapse');
-    collapse.classList.toggle('in');
-}
+    const collapse = document.getElementsByClassName("navbar-collapse")[0];
+    collapse.classList.toggle("collapse");
+    collapse.classList.toggle("in");
+};
 
 class Header extends Component {
 
@@ -36,7 +36,7 @@ class Header extends Component {
                                         <Link to="/" onClick={toggleMenu} >
                                             <button className="btn navbar-btn nav-link nav-link-grey">
                                                 Admin Login
-                                        </button>
+                                            </button>
                                         </Link>
                                     </li>
                                 </ul>
@@ -46,7 +46,7 @@ class Header extends Component {
                                         <Link to="/admin" onClick={toggleMenu}>
                                             <button className="btn navbar-btn nav-link nav-link-grey">
                                                 Admin Dashboard
-                                        </button>
+                                            </button>
                                         </Link>
                                     </li>
                                 </ul>
@@ -55,20 +55,20 @@ class Header extends Component {
                     </div>
                 </nav>
             </header>
-        )
+        );
     }
 }
 
 const mapStateToProps = state => {
     return {
         user: state.user,
-        kitchen: state.kitchen
-    }
-}
+        kitchen: state.kitchen,
+    };
+};
 
 Header = connect(
     mapStateToProps,
     null
-)(Header)
+)(Header);
 
 export default Header;

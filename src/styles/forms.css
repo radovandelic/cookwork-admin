@@ -104,15 +104,15 @@ input {
     justify-content: center;
 }
 
-.btn-orange,
-.btn-orange:focus {
+.btn.btn-orange,
+.btn.btn-orange:focus {
     background-color: #ed7b22;
     border-color: #ed7b22;
     font-weight: bold;
     color: #fff;
 }
 
-.btn-orange:hover {
+.btn.btn-orange:hover {
     background-color: #fff;
     color: #ed7b22;
 }
@@ -160,6 +160,25 @@ input {
     justify-content: space-between;
 }
 
+td {
+    padding: 5px;
+}
+
+th>h2 {
+    text-align: center;
+}
+
+td>h3 {
+    text-align: left;
+}
+
+.form-container.user-table {
+    max-width: 70vw;
+    margin: 50px auto;
+    text-align: left;
+    padding: 25px 40px;
+}
+
 @media screen and (max-width: 768px) {
     .d-inline-block {
         font-size: 55%;
@@ -176,18 +195,6 @@ input {
     .react-form-control>input[type="radio"] {
         margin: -2px 5px 0;
     }
-}
-
-td {
-    padding: 5px;
-}
-
-th>h2 {
-    text-align: center;
-}
-
-td>h3 {
-    text-align: left;
 }
 
 @media screen and (max-width: 350px) {
