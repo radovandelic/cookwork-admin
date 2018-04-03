@@ -1,10 +1,12 @@
-'use strict';
+'use strict'; // eslint-disable-line
 
 const autoprefixer = require('autoprefixer');
 const path = require('path');
+const glob = require('glob-all');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const PurifyCSSPlugin = require('purifycss-webpack');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
@@ -58,6 +60,7 @@ module.exports = {
   // In production, we only want to load the polyfills and the app code.
   entry: [require.resolve('./polyfills'), paths.appIndexJs],
   output: {
+    libraryTarget: 'umd',
     // The build folder.
     path: paths.appBuild,
     // Generated JS file names (with nested folders).
@@ -72,6 +75,8 @@ module.exports = {
       path
         .relative(paths.appSrc, info.absoluteResourcePath)
         .replace(/\\/g, '/'),
+  },
+  externals: {
   },
   resolve: {
     // This allows you to set a fallback for where Webpack should look for modules.
@@ -252,7 +257,6 @@ module.exports = {
     // Generates an `index.html` file with the <script> injected.
     new HtmlWebpackPlugin({
       inject: true,
-      filename: paths.outputFileName,
       template: paths.appHtml,
       minify: {
         removeComments: true,
@@ -296,6 +300,15 @@ module.exports = {
     // Note: this won't work without ExtractTextPlugin.extract(..) in `loaders`.
     new ExtractTextPlugin({
       filename: cssFilename,
+    }),
+    new PurifyCSSPlugin({
+      minimize: true,
+      purifyOptions: { // Animations used by an external library
+        whitelist: ['*-leave*', '*-leave-active*', '*-enter*', '*-enter-active*']
+      },
+      paths: glob.sync([
+        path.join(__dirname, './../src/**/*.js')
+      ]),
     }),
     // Generate a manifest file which contains a mapping of all asset filenames
     // to their corresponding output file so that tools can pick it up without

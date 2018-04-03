@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Header, Footer, NotFound } from './components';
 import { Login, Dashboard, Browse, VerifyKitchen, Translate } from './containers';
+import './styles/bootstrap.css'
+
 import './styles/App.css';
 
 const ScrollToTop = () => {
