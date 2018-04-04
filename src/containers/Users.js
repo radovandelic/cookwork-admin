@@ -50,7 +50,7 @@ class Users extends Component {
                             <th><h3>username</h3></th>
                             <th width="250px"><h3>email</h3></th>
                             <th><h3>region</h3></th>
-                            <th><h3>phone</h3></th>
+                            <th width="160px"><h3>phone</h3></th>
                             <th width="150px"><h3>activity</h3></th>
                             <th width="120px"><h3>role</h3></th>
                         </tr>
