@@ -162,6 +162,7 @@ input {
 
 td {
     padding: 5px;
+    font-size: 14px;
 }
 
 th>h2 {
@@ -170,13 +171,18 @@ th>h2 {
 
 td>h3 {
     text-align: left;
+    margin: 0 10px;
 }
 
 .form-container.user-table {
-    max-width: 70vw;
+    max-width: 80vw;
     margin: 50px auto;
     text-align: left;
     padding: 25px 40px;
+}
+
+.form-container.user-table td {
+    min-width: 100px;
 }
 
 @media screen and (max-width: 768px) {

@@ -46,13 +46,13 @@ class Users extends Component {
                 <table>
                     <thead>
                         <tr>
-                            <th><h3>name</h3></th>
+                            <th width="200px"><h3>name</h3></th>
                             <th><h3>username</h3></th>
-                            <th><h3>email</h3></th>
+                            <th width="250px"><h3>email</h3></th>
                             <th><h3>region</h3></th>
                             <th><h3>phone</h3></th>
-                            <th><h3>activity</h3></th>
-                            <th><h3>role</h3></th>
+                            <th width="150px"><h3>activity</h3></th>
+                            <th width="120px"><h3>role</h3></th>
                         </tr>
                     </thead>
                     <tbody>
