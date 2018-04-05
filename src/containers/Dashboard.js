@@ -27,9 +27,6 @@ let Dashboard = (props) => {
             <Link to="/admin/users">
                 <button className="mb-4 btn btn-orange dashboard-btn">View users</button>
             </Link>
-            <Link to="/admin/translate">
-                <button className="mb-4 btn btn-orange dashboard-btn">Edit translations</button>
-            </Link>
             <button id="logout" type="submit" onClick={logout} className="mb-4 btn btn-danger dashboard-btn">Logout</button>
         </div>
     );

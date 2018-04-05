@@ -5,8 +5,7 @@ import Browse from "./Browse";
 import Kitchen from "./Kitchen";
 import VerifyKitchen from "./VerifyKitchen";
 import Users from "./Users";
-import Translate from "./Translate";
 
 export {
-    Home, Login, Dashboard, VerifyKitchen, Browse, Kitchen, Users, Translate,
+    Home, Login, Dashboard, VerifyKitchen, Browse, Kitchen, Users,
 };
