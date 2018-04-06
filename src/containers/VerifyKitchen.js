@@ -235,30 +235,6 @@ class Form extends Component {
                             <label htmlFor="type">Type de bien: </label>
                             <input type="text" ref="type" id="type" readOnly value={kitchen.type} />
                         </div>
-                        {/* 
-                        <div className="input-div" style={{ height: '150px' }}>
-                            <label>Type de bien:</label>
-                            <div class="react-form-input react-form-radio-group"><ul class="radio-grid"><li> <label class="d-inline-block react-form-control react-form-control-radio" for="kitchen">Cuisine laboratoire<input id="kitchen" value="on" type="radio" /><div class="react-form-control-indicator react-form-input react-form-radio"></div></label> </li><li> <label class="d-inline-block react-form-control react-form-control-radio" for="sharedkitchen">Cuisine laboratoire partagée<input id="sharedkitchen" value="on" type="radio" /><div class="react-form-control-indicator react-form-input react-form-radio"></div></label> </li><li> <label class="d-inline-block react-form-control react-form-control-radio" for="restaurant">Cuisine de restaurant<input id="restaurant" value="on" type="radio" /><div class="react-form-control-indicator react-form-input react-form-radio"></div></label> </li><li> <label class="d-inline-block react-form-control react-form-control-radio" for="collectiverestaurant">Cuisine de restaurant collective<input id="collectiverestaurant" value="on" type="radio" /><div class="react-form-control-indicator react-form-input react-form-radio"></div></label> </li></ul></div>
-                            <div className="react-form-input react-form-radio-group" ref="type">
-                                <ul className="radio-grid" >
-
-                                    <li>
-                                        <label class="d-inline-block react-form-control react-form-control-radio" for="kitchen">
-                                            Cuisine laboratoire
-                                            <input type="radio" ref="type" value="kitchen" id="kitchen" label="Cuisine laboratoire" className="d-inline-block" />
-                                        </label>
-                                    </li>
-                                    <li>
-                                        <label class="d-inline-block react-form-control react-form-control-radio" for="kitchen">
-                                            Cuisine laboratoire partagée
-                                            <input type="radio" ref="type" value="sharedkitchen" id="sharedkitchen" label="Cuisine laboratoire partagée" className="d-inline-block" />
-                                        </label>
-                                    </li>
-                                    <li> <input type="radio" ref="type" value="restaurant" id="restaurant" label="Cuisine de restaurant" className="d-inline-block" /> </li>
-                                    <li> <input type="radio" ref="type" value="collectiverestaurant" id="collectiverestaurant" label="Cuisine de restaurant collective" className="d-inline-block" /> </li>
-                                </ul>
-                            </div>
-                        </div> */}
                         <div className="input-div" >
                             <label htmlFor="address">Adresse du bien</label>
                             <input type="text" ref="address" id="address" defaultValue={kitchen.address} />
@@ -304,11 +280,11 @@ class Form extends Component {
                         </div>
                         <div className="input-div" >
                             <label htmlFor="price">Prix à l'heure (HTVA)</label>
-                            <input type="number" ref="price" id="price" min="15" max="500" defaultValue={kitchen.price} />
+                            <input type="number" ref="price" id="price" min="15" max="500" readOnly defaultValue={kitchen.price} />
                         </div>
                         <div className="input-div" >
                             <label htmlFor="rent">Prix au mois pour un entrepreneur (une équipe de 2 personnes max) (HTVA)</label>
-                            <input type="number" ref="rent" id="rent" min="100" max="50000" defaultValue={kitchen.rent} />
+                            <input type="number" ref="rent" id="rent" min="100" max="50000" readOnly defaultValue={kitchen.rent} />
                         </div>
                         <label htmlFor="equipment">Equipements disponibles:</label>
                         <div className="input-div-checkbox" >
