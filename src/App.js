@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 import { Header, Footer, NotFound } from "./components";
-import { Login, Dashboard, Browse, VerifyKitchen, Users, UserInfo, Orders } from "./containers";
+import { Login, Dashboard, Browse, VerifyKitchen, Users, UserInfo, Orders, Translate } from "./containers";
 import "./styles/bootstrap.css";
 import "./styles/App.css";
 
@@ -39,6 +39,8 @@ class App extends Component {
                                 <Route exact path="/admin/edit/kitchens/:id" component={VerifyKitchen} />
                                 <Route exact path="/admin/verify/kitchens" component={Browse} />
                                 <Route exact path="/admin/verify/kitchens/:id" component={VerifyKitchen} />
+
+                                <Route exact path="/admin/translate" component={Translate} />
                                 <Route component={NotFound} />
                             </Switch >
                         }

@@ -32,7 +32,9 @@ class Form extends Component {
         headers.append("Content-Type", "application/json");
         fetch(url, { method: "GET", headers: headers })
             .then(res => res.json())
-            .then(data => this.setState({ translations: data.rows[0].translations, id: data.rows[0].id }))
+            .then(data => this.setState({ translations: data.rows[0].translations, id: data.rows[0].id }, () => {
+                console.log(this.state.translations);
+            }))
             .catch(err => this.setState({ overlay: "overlay on" }));
     }
 
@@ -73,7 +75,6 @@ class Form extends Component {
             })
             .then(data => {
                 this.setState({ redirect: "/" });
-                updateUser(data.user);
             })
             .catch(err => {
                 this.setState({ overlay: "overlay on" });
@@ -82,37 +83,37 @@ class Form extends Component {
     render = () => {
         const { translations, id } = this.state;
         const Items = [];
-        if (translations && translations.equipment) {
+        if (translations) {
             for (const group in translations) {
                 Items.push(<tr key={group}><th colSpan="4"><h2>{group + " group"}</h2></th></tr>);
                 if (group !== "faq") {
                     for (const prop in translations[group].fr) {
                         const translation = translations[group];
-                        const len = translation["fr"][prop].length;
+                        const len = translation["en"][prop].length;
                         Items.push(
                             <tr key={group + prop}>
                                 <td >
                                     <h3>{prop}</h3>
                                 </td>
-                                <td height={len < 30 ? "50px" : "100px"} >
+                                <td height={len < 30 ? "50px" : "300px"} >
                                     {len < 30 ?
                                         <input type="text" ref={group + ";fr;" + prop} id={prop} defaultValue={translation["fr"][prop]} />
                                         :
-                                        <textarea ref={group + ";fr;" + prop} id={prop} defaultValue={translation["fr"][prop]} rows="3" />
+                                        <textarea ref={group + ";fr;" + prop} id={prop} defaultValue={translation["fr"][prop]} rows="10" />
                                     }
                                 </td>
-                                <td height={len < 30 ? "50px" : "100px"} >
+                                <td height={len < 30 ? "50px" : "300px"} >
                                     {len < 30 ?
                                         <input type="text" ref={group + ";nl;" + prop} id={prop} defaultValue={translation["nl"][prop]} />
                                         :
-                                        <textarea ref={group + ";nl;" + prop} id={prop} defaultValue={translation["nl"][prop]} rows="3" />
+                                        <textarea ref={group + ";nl;" + prop} id={prop} defaultValue={translation["nl"][prop]} rows="10" />
                                     }
                                 </td>
-                                <td height={len < 30 ? "50px" : "100px"} >
+                                <td height={len < 30 ? "50px" : "300px"} >
                                     {len < 30 ?
                                         <input type="text" ref={group + ";en;" + prop} id={prop} defaultValue={translation["en"][prop]} />
                                         :
-                                        <textarea ref={group + ";en;" + prop} id={prop} defaultValue={translation["en"][prop]} rows="3" />
+                                        <textarea ref={group + ";en;" + prop} id={prop} defaultValue={translation["en"][prop]} rows="10" />
                                     }
                                 </td>
                             </tr>);

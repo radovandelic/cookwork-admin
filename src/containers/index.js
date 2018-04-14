@@ -8,6 +8,8 @@ import Users from "./Users";
 import UserInfo from "./UserInfo";
 import Orders from "./Orders";
 
+import Translate from "./Translate";
+
 export {
-    Home, Login, Dashboard, VerifyKitchen, Browse, Kitchen, Users, UserInfo, Orders,
+    Home, Login, Dashboard, VerifyKitchen, Browse, Kitchen, Users, UserInfo, Orders, Translate,
 };
