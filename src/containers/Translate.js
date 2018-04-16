@@ -32,9 +32,7 @@ class Form extends Component {
         headers.append("Content-Type", "application/json");
         fetch(url, { method: "GET", headers: headers })
             .then(res => res.json())
-            .then(data => this.setState({ translations: data.rows[0].translations, id: data.rows[0].id }, () => {
-                console.log(this.state.translations);
-            }))
+            .then(data => this.setState({ translations: data.rows[0].translations, id: data.rows[0].id }))
             .catch(err => this.setState({ overlay: "overlay on" }));
     }
 

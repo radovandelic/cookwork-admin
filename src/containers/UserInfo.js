@@ -12,7 +12,7 @@ class Users extends Component {
     }
     componentWillMount = () => {
         const { access_token } = this.props;
-        const url = "http://0.0.0.0:9000/api/infos??sort=-createdAt&access_token=" + access_token;
+        const url = "http://0.0.0.0:9000/api/infos?sort=-createdAt&access_token=" + access_token;
         const headers = new Headers();
         headers.append("Accept", "application/json");
         headers.append("Content-Type", "application/json");
