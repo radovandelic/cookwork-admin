@@ -397,7 +397,7 @@ class Form extends Component {
                                 <button id="submit" type="submit" className="btn btn-orange">{verified ? "Save changes" : "Verify & publish Kitchen"}</button>
                             </div>
                             <div className="input-div" >
-                                <button id="delete" type="button" onClick={() => {
+                                <button id="delete" type="button" onClick={verified ? this.unpublish : () => {
                                     this.setState({
                                         popup: {
                                             message: "Are you sure you want to reject and delete this listing?",
@@ -407,7 +407,7 @@ class Form extends Component {
                                         overlay: "overlay on",
                                     });
                                 }}
-                                className="btn btn-danger">{verified ? "Delete listing" : "Reject and delete listing"}</button>
+                                className="btn btn-danger">{verified ? "Unpublish listing" : "Reject and delete listing"}</button>
                             </div>
                         </div>
                         <div id="header_spacing"></div>
@@ -420,6 +420,49 @@ class Form extends Component {
                         yes="delete" no="false" />
                 </div>
         );
+    }
+
+    unpublish = () => {
+        const { user } = this.props;
+        const { id } = this.props.match.params;
+        let submittedValues = {};
+        for (const ref in this.refs) {
+            submittedValues[ref] = this.refs[ref].value ? this.refs[ref].value : undefined;
+        }
+        submittedValues = this.formatData(submittedValues);
+        submittedValues.verified = false;
+        submittedValues.access_token = user.access_token;
+        const url = `http://0.0.0.0:9000/api/kitchens/${id}/`;
+        const query = {
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+            },
+            method: "PUT",
+            body: JSON.stringify(submittedValues),
+        };
+        fetch(url, query)
+            .then(res => res.json())
+            .then(data => {
+                this.setState({
+                    popup: {
+                        message: "The kitchen has been unpublished.",
+                        title: "Success",
+                        btn: "ok",
+                    },
+                    overlay: "overlay on",
+                });
+            })
+            .catch(err => {
+                this.setState({
+                    popup: {
+                        message: errorMessageConnect,
+                        title: "Error",
+                        btn: "ok",
+                    },
+                    overlay: "overlay on",
+                });
+            });
     }
 
     delete = () => {
