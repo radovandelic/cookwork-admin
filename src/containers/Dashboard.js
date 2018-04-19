@@ -33,9 +33,6 @@ let Dashboard = (props) => {
             <Link to="/admin/orders">
                 <button className="mb-4 btn btn-orange dashboard-btn">Orders</button>
             </Link>
-            <Link to="/admin/translate">
-                <button className="mb-4 btn btn-orange dashboard-btn">Translations</button>
-            </Link>
             <button id="logout" type="submit" onClick={logout} className="mb-4 btn btn-danger dashboard-btn">Logout</button>
         </div>
     );
