@@ -280,11 +280,11 @@ class Form extends Component {
                         </div>
                         <div className="input-div" >
                             <label htmlFor="price">Prix à l'heure (HTVA)</label>
-                            <input type="number" ref="price" id="price" min="15" max="500" readOnly defaultValue={kitchen.price} />
+                            <input type="number" ref="price" id="price" min="15" max="500" defaultValue={kitchen.price} />
                         </div>
                         <div className="input-div" >
                             <label htmlFor="rent">Prix au mois pour un entrepreneur (une équipe de 2 personnes max) (HTVA)</label>
-                            <input type="number" ref="rent" id="rent" min="100" max="50000" readOnly defaultValue={kitchen.rent} />
+                            <input type="number" ref="rent" id="rent" min="100" max="50000" defaultValue={kitchen.rent} />
                         </div>
                         <label htmlFor="equipment">Equipements disponibles:</label>
                         <div className="input-div-checkbox" >
