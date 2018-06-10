@@ -4,12 +4,11 @@ import Dashboard from "./Dashboard";
 import Browse from "./Browse";
 import Kitchen from "./Kitchen";
 import VerifyKitchen from "./VerifyKitchen";
+import ImageUpload from "./ImageUpload";
 import Users from "./Users";
-import UserInfo from "./UserInfo";
 import Orders from "./Orders";
-
-import Translate from "./Translate";
+import UserInfo from "./UserInfo";
 
 export {
-    Home, Login, Dashboard, VerifyKitchen, Browse, Kitchen, Users, UserInfo, Orders, Translate,
+    Home, Login, Dashboard, VerifyKitchen, ImageUpload, Browse, Kitchen, Users, UserInfo, Orders,
 };

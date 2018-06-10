@@ -74,6 +74,13 @@ export default class extends Component {
                         <Link to={verified ? `/admin/edit/kitchens/${kitchen.id}` : `/admin/verify/kitchens/${kitchen.id}`}  >
                             <button className="btn btn-orange btn-verify">{verified ? "View / Edit" : "Verify"}</button>
                         </Link>
+                        {verified
+                            ?
+                            <Link to={`/admin/images/kitchens/${kitchen.id}`}  >
+                                <button className="btn btn-orange btn-verify">Edit Images</button>
+                            </Link>
+                            :
+                            null}
                     </div>
                 </div>
             );
